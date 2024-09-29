@@ -1,8 +1,8 @@
-﻿using DoaFacil.Backend.Application.Commands.Base;
+﻿using DoaFacil.Backend.Application.Dtos.EnderecosUsuario;
 
-namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
+namespace DoaFacil.Backend.Application.Dtos.Usuarios
 {
-    public class AddUsuarioCommand : Command<Guid>
+    public class AddUsuarioDto
     {
         public string Nome { get; set; }
         public string CpfCnpj { get; set; }
@@ -10,5 +10,6 @@ namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
         public string Senha { get; set; }
         public string Celular { get; set; }
         public DateTime DataNascimento { get; set; }
+        public EnderecoUsuarioDto Endereco { get; set; }
     }
 }

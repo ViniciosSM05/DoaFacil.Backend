@@ -3,6 +3,7 @@ using DoaFacil.Backend.Api.Dtos.Response;
 using DoaFacil.Backend.Api.Dtos.Usuario;
 using DoaFacil.Backend.Application.AppServices.Interfaces;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
+using DoaFacil.Backend.Application.Dtos.Usuarios;
 using DoaFacil.Backend.Domain.Notification;
 using DoaFacil.Backend.Infra.Authentication.AuthModels.Token;
 using Microsoft.AspNetCore.Authorization;
@@ -15,8 +16,8 @@ namespace DoaFacil.Backend.Api.Controllers
     {
         [HttpPost]
         [Authorize]
-        public Task<ActionResult<DoaFacilDataResponseDto<Guid>>> AddUsuarioAsync([FromBody] AddUsuarioCommand contract, CancellationToken cancellationToken)
-            => ExecuteAsync(() => usuarioAppService.AddUsuarioAsync(contract, cancellationToken));
+        public Task<ActionResult<DoaFacilDataResponseDto<Guid>>> AddUsuarioAsync([FromBody] AddUsuarioDto dto, CancellationToken cancellationToken)
+            => ExecuteAsync(() => usuarioAppService.AddUsuarioAsync(dto, cancellationToken));
 
         [HttpPost("auth")]
         [AllowAnonymous]

@@ -1,6 +1,7 @@
 ﻿using DoaFacil.Backend.Domain.Repositories.Base;
 using DoaFacil.Backend.Infra.Database.Context;
 using DoaFacil.Backend.Infra.Database.Repositories.Base;
+using DoaFacil.Backend.Infra.Database.Seeds;
 using DoaFacil.Backend.Infra.Database.UoW;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ namespace DoaFacil.Backend.Infra.Database.IoC
         {
             RegisterContext(services);
             RegisterUnitOfWork(services);
+            RegisterSeed(services);
             RegisterRepositories(services);
         }
 
@@ -23,6 +25,12 @@ namespace DoaFacil.Backend.Infra.Database.IoC
             using var serviceScope = app.ApplicationServices.CreateScope();
             using var context = serviceScope.ServiceProvider.GetService<IUoWContext>();
             context.MigrateDatabase();
+
+            using var uow = serviceScope.ServiceProvider.GetService<IUnitOfWork>();
+            var seed = serviceScope.ServiceProvider.GetService<ISeed>();
+            uow.Start();
+            seed.Execute();
+            uow.Commit();
         }
 
         private static void RegisterContext(IServiceCollection services)
@@ -49,6 +57,11 @@ namespace DoaFacil.Backend.Infra.Database.IoC
                 var impl = implementationProviderTypes.FirstOrDefault(c => c.IsClass && !c.IsAbstract && intfc.Name == $"I{c.Name}");
                 if (impl != null) services.AddScoped(intfc, impl);
             }
+        }
+
+        private static void RegisterSeed(IServiceCollection services)
+        {
+            services.AddScoped<ISeed, Seed>();
         }
     }
 }

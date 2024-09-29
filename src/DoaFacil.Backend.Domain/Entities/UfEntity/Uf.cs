@@ -8,6 +8,15 @@ namespace DoaFacil.Backend.Domain.Entities.UfEntity
         public const int SIGLA_MAX_LENGTH = 2;
         public const int NOME_MAX_LENGTH = 40;
 
+        public Uf() { }
+
+        public Uf(Guid id, string sigla, string nome)
+        {
+            SetId(id);
+            SetSigla(sigla);
+            SetNome(nome);
+        }
+
         public string Sigla { get; private set; } 
         public string Nome { get; private set; }
 

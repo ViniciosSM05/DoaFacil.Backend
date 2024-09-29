@@ -7,6 +7,7 @@ using DoaFacil.Backend.Domain.Entities.ImagemAnuncioEntity;
 using DoaFacil.Backend.Domain.Entities.UfEntity;
 using DoaFacil.Backend.Domain.Entities.UsuarioEntity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DoaFacil.Backend.Infra.Database.Context
 {
@@ -22,5 +23,6 @@ namespace DoaFacil.Backend.Infra.Database.Context
         DbSet<Doacao> Doacoes { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        ChangeTracker ChangeTracker { get; }
     }
 }

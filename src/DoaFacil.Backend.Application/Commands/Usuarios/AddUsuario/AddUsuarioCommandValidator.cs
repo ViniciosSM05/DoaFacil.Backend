@@ -3,7 +3,6 @@ using FluentValidation;
 using DoaFacil.Backend.Infra.Crosscutting.Extensions;
 using DoaFacil.Backend.Domain.Repositories;
 using DoaFacil.Backend.Domain.Entities.UsuarioEntity;
-using DoaFacil.Backend.Domain.Entities.EnderecoUsuarioEntity;
 
 namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
 {
@@ -15,25 +14,17 @@ namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
         public const string EMAIL_INVALIDO_ERROR_MESSAGE = "E-mail é inválido";
         public const string EMAIL_JA_CADASTRADO_ERROR_MESSAGE = "E-mail já cadastrado";
         public const string SENHA_INVALIDA_ERROR_MESSAGE = "A senha precisa ter entre 8 a 15 caracteres";
-        public const string CIDADE_NAO_ECONTRADA_ERROR_MESSAGE = "A cidade não foi encontrada";
-        public const string CEP_INVALIDO_ERROR_MESSAGE = "CEP inválido";
-        public const string NUMERO_INVALIDO_ERROR_MESSAGE = "Número inválido";
-        public const string BAIRRO_INVALIDO_ERROR_MESSAGE = "Bairro inválido";
-        public const string CIDADE_INVALIDA_ERROR_MESSAGE = "Cidade inválida";
 
         private readonly IUsuarioRepository usuarioRepository;
-        private readonly ICidadeRepository cidadeRepository;
 
-        public AddUsuarioCommandValidator(IUsuarioRepository usuarioRepository, ICidadeRepository cidadeRepository)
+        public AddUsuarioCommandValidator(IUsuarioRepository usuarioRepository)
         {
             this.usuarioRepository = usuarioRepository;
-            this.cidadeRepository = cidadeRepository;
 
             ApplyRulesToNome();
             ApplyRulesToEmail();
             ApplyRulesToSenha();
             ApplyRulesToDocumento();
-            ApplyRulesToEndereco();
         }
 
         private void ApplyRulesToNome()
@@ -77,32 +68,6 @@ namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
                 .MinimumLength(8)
                 .MaximumLength(15)
                 .WithMessage(SENHA_INVALIDA_ERROR_MESSAGE);
-        }
-
-        private void ApplyRulesToEndereco()
-        {
-            RuleFor(usuario => usuario.Cep).Cascade(CascadeMode.Stop)
-                .NotEmpty()
-                .NotNull()
-                .MaximumLength(EnderecoUsuario.CEP_MAX_LENGTH)
-                .WithMessage(CEP_INVALIDO_ERROR_MESSAGE);
-
-            RuleFor(usuario => usuario.Numero).Cascade(CascadeMode.Stop)
-                .NotEmpty()
-                .NotNull()
-                .WithMessage(NUMERO_INVALIDO_ERROR_MESSAGE);
-
-            RuleFor(usuario => usuario.Bairro).Cascade(CascadeMode.Stop)
-                .NotEmpty()
-                .NotNull()
-                .MaximumLength(EnderecoUsuario.BAIRRO_MAX_LENGTH)
-                .WithMessage(BAIRRO_INVALIDO_ERROR_MESSAGE);
-
-            RuleFor(usuario => usuario.CidadeId).Cascade(CascadeMode.Stop)
-                .NotEmpty()
-                .NotNull()
-                .MustAsync((_, cidadeId, cancellation) => cidadeRepository.ExistsAsync(cidadeId, cancellation))
-                .WithMessage(CIDADE_INVALIDA_ERROR_MESSAGE);
         }
     }
 }

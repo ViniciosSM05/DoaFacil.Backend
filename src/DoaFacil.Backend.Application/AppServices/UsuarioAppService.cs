@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using DoaFacil.Backend.Application.AppServices.Base;
 using DoaFacil.Backend.Application.AppServices.Interfaces;
+using DoaFacil.Backend.Application.Commands.Cidades.AddCidade;
 using DoaFacil.Backend.Application.Commands.Dispatcher;
+using DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsuario;
 using DoaFacil.Backend.Application.Commands.Notifications.AddNotificationMessage;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
+using DoaFacil.Backend.Application.Dtos.Usuarios;
 using DoaFacil.Backend.Domain.Constants;
 using DoaFacil.Backend.Domain.Entities.UsuarioEntity;
 using DoaFacil.Backend.Domain.Notification;
@@ -25,15 +28,25 @@ namespace DoaFacil.Backend.Application.AppServices
         public const string DEFAULT_ROLE = "user";
         public const string UNAUTHORIZE_ERROR_MESSAGE = "Usuário não encontrado";
         
-        public async Task<Guid> AddUsuarioAsync(AddUsuarioCommand command, CancellationToken cancellationToken)
+        public async Task<Guid> AddUsuarioAsync(AddUsuarioDto dto, CancellationToken cancellationToken)
         {
             using (_unitOfWork.Start())
             {
-                var result = await _commandDispatcher.DispatchAsync(command, cancellationToken);
+                var addUsuarioCommand = mapper.Map<AddUsuarioCommand>(dto);
+                var usuarioId = await _commandDispatcher.DispatchAsync(addUsuarioCommand, cancellationToken);
+
+                var addCidadeCommand = mapper.Map<AddCidadeCommand>(dto.Endereco?.Cidade);
+                var cidadeId = await _commandDispatcher.DispatchAsync(addCidadeCommand, cancellationToken);
+
+                var addEnderecoUsuarioCommand = mapper.Map<AddEnderecoUsuarioCommand>(dto.Endereco);
+                addEnderecoUsuarioCommand.CidadeId = cidadeId;
+                addEnderecoUsuarioCommand.UsuarioId = usuarioId;
+                await _commandDispatcher.DispatchAsync(addEnderecoUsuarioCommand, cancellationToken);
+
                 if (!_notifications.IsValid) return Guid.Empty;
 
                 await _unitOfWork.CommitAsync(cancellationToken);
-                return result;
+                return usuarioId;
             }
         }
 

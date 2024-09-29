@@ -29,8 +29,11 @@ namespace DoaFacil.Backend.Infra.Database.Repositories.Base
             return Task.CompletedTask;
         }
 
-        public virtual Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
-            => _dbSet.AnyAsync(entity => entity.Id == id, cancellationToken);
+        public virtual async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var tracked = _context.ChangeTracker.Entries<TEntity>().Any(x => x.Entity.Id == id && x.State != EntityState.Detached);
+            return tracked || await _dbSet.AnyAsync(entity => entity.Id == id, cancellationToken);
+        }
 
         public virtual Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
             => _dbSet.FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
