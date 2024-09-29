@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DoaFacil.Backend.Domain\DoaFacil.Backend.Domain.csproj" />
+    <ProjectReference Include="..\DoaFacil.Backend.Infra.Authentication\DoaFacil.Backend.Infra.Authentication.csproj" />
+    <ProjectReference Include="..\DoaFacil.Backend.Infra.Crosscutting\DoaFacil.Backend.Infra.Crosscutting.csproj" />
+    <ProjectReference Include="..\DoaFacil.Backend.Infra.Database\DoaFacil.Backend.Infra.Database.csproj" />
+  </ItemGroup>
+
+</Project>
