@@ -2,9 +2,20 @@ using Asp.Versioning.ApiExplorer;
 using DoaFacil.Backend.Api.EnvironmentConfigs;
 using DoaFacil.Backend.Infra.IoC;
 
+const string DEFAULT_POLICY_NAME = "default";
 var builder = WebApplication.CreateBuilder(args);
 
 SwaggerEnvironmentConfig.ConfigureServices(builder.Services);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: DEFAULT_POLICY_NAME, policy =>
+    {
+        policy
+            .AllowAnyHeader()
+            .AllowAnyOrigin()
+            .AllowAnyMethod();
+    });
+});
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,6 +31,7 @@ if (app.Environment.IsDevelopment())
 
 }
 
+app.UseCors(DEFAULT_POLICY_NAME);
 StartupIoC.Start(app);
 app.UseHttpsRedirection();
 app.MapControllers();

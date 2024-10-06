@@ -13,7 +13,7 @@ namespace DoaFacil.Backend.Application.Mapper.Converters.EnderecoConverters
             destination.SetUsuarioId(source.UsuarioId);
             destination.SetCep(source.Cep);
             destination.SetBairro(source.Bairro);
-            destination.SetNumero(source.Numero);
+            destination.SetNumero(source.Numero.GetValueOrDefault());
             destination.SetRua(source.Rua);
 
             return destination;

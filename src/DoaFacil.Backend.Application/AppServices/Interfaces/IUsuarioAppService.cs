@@ -1,12 +1,10 @@
 ﻿using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
-using DoaFacil.Backend.Application.Dtos.Usuarios;
-using DoaFacil.Backend.Infra.Authentication.AuthModels.Token;
+using DoaFacil.Backend.Application.Dtos.Ufs;
 
 namespace DoaFacil.Backend.Application.AppServices.Interfaces
 {
-    public interface IUsuarioAppService
+    public interface IUfAppService
     {
-        Task<Guid> AddUsuarioAsync(AddUsuarioDto command, CancellationToken cancellationToken);
-        Task<TokenAuthModel> AuthenticateAsync(string email, string senha, CancellationToken cancellationToken);
+        Task<List<UfDto>> GetAllUfs(CancellationToken cancellationToken);
     }
 }

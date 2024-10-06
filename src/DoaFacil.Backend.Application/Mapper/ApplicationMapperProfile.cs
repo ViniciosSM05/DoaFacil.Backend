@@ -4,12 +4,15 @@ using DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsuario;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
 using DoaFacil.Backend.Application.Dtos.Cidades;
 using DoaFacil.Backend.Application.Dtos.EnderecosUsuario;
+using DoaFacil.Backend.Application.Dtos.Ufs;
 using DoaFacil.Backend.Application.Dtos.Usuarios;
 using DoaFacil.Backend.Application.Mapper.Converters.CidadeConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.EnderecoConverters;
+using DoaFacil.Backend.Application.Mapper.Converters.UfConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.UsuarioConverters;
 using DoaFacil.Backend.Domain.Entities.CidadeEntity;
 using DoaFacil.Backend.Domain.Entities.EnderecoUsuarioEntity;
+using DoaFacil.Backend.Domain.Entities.UfEntity;
 using DoaFacil.Backend.Domain.Entities.UsuarioEntity;
 
 namespace DoaFacil.Backend.Application.Mapper
@@ -21,6 +24,7 @@ namespace DoaFacil.Backend.Application.Mapper
             MapCidade();
             MapEnderecoUsuario();
             MapUsuario();
+            MapUf();
         }
 
         private void MapCidade()
@@ -40,5 +44,7 @@ namespace DoaFacil.Backend.Application.Mapper
             CreateMap<AddUsuarioCommand, Usuario>().ConvertUsing<AddUsuarioCommandToUsuarioConverter>();
             CreateMap<AddUsuarioDto, AddUsuarioCommand>().ConvertUsing<AddUsuarioDtoToAddUsuarioCommandConverter>();
         }
+
+        private void MapUf() => CreateMap<Uf, UfDto>().ConvertUsing<UfToUfDtoConverter>();
     }
 }

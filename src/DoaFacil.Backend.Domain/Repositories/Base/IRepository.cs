@@ -19,5 +19,7 @@ namespace DoaFacil.Backend.Domain.Repositories.Base
         Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
+
+        Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default);
     }
 }

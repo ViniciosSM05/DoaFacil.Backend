@@ -14,6 +14,8 @@ namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
         public const string EMAIL_INVALIDO_ERROR_MESSAGE = "E-mail é inválido";
         public const string EMAIL_JA_CADASTRADO_ERROR_MESSAGE = "E-mail já cadastrado";
         public const string SENHA_INVALIDA_ERROR_MESSAGE = "A senha precisa ter entre 8 a 15 caracteres";
+        public const string DATA_NASCIMENTO_INVALIDA_ERROR_MESSAGE = "A data de nascimento é inválida";
+        public const string CELULAR_INVALIDO_ERROR_MESSAGE = "O número de celular é inválido";
 
         private readonly IUsuarioRepository usuarioRepository;
 
@@ -25,23 +27,50 @@ namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
             ApplyRulesToEmail();
             ApplyRulesToSenha();
             ApplyRulesToDocumento();
+            ApplyRulesToDataNascimento();
+            ApplyRulesToCelular();
         }
 
         private void ApplyRulesToNome()
         {
             RuleFor(usuario => usuario.Nome).Cascade(CascadeMode.Stop)
                 .NotEmpty()
+                    .WithMessage(NOME_INVALIDO_ERROR_MESSAGE)
                 .NotNull()
+                    .WithMessage(NOME_INVALIDO_ERROR_MESSAGE)
                 .MaximumLength(Usuario.NOME_MAX_LENGTH)
-                .WithMessage(NOME_INVALIDO_ERROR_MESSAGE);
+                    .WithMessage(NOME_INVALIDO_ERROR_MESSAGE);
+        }
+
+        private void ApplyRulesToDataNascimento()
+        {
+            RuleFor(usuario => usuario.DataNascimento).Cascade(CascadeMode.Stop)
+                .NotEmpty()
+                    .WithMessage(DATA_NASCIMENTO_INVALIDA_ERROR_MESSAGE)
+                .NotNull()
+                    .WithMessage(DATA_NASCIMENTO_INVALIDA_ERROR_MESSAGE);
+        }
+
+        private void ApplyRulesToCelular()
+        {
+            RuleFor(usuario => usuario.Celular).Cascade(CascadeMode.Stop)
+                .NotEmpty()
+                    .WithMessage(CELULAR_INVALIDO_ERROR_MESSAGE)
+                .NotNull()
+                    .WithMessage(CELULAR_INVALIDO_ERROR_MESSAGE)
+                .Length(Usuario.CELULAR_MAX_LENGTH)
+                    .WithMessage(CELULAR_INVALIDO_ERROR_MESSAGE);
         }
 
         private void ApplyRulesToDocumento()
         {
             RuleFor(usuario => usuario.CpfCnpj).Cascade(CascadeMode.Stop)
                 .NotEmpty()
+                    .WithMessage(DOCUMENTO_INVALIDO_ERROR_MESSAGE)
                 .NotNull()
+                    .WithMessage(DOCUMENTO_INVALIDO_ERROR_MESSAGE)
                 .MaximumLength(Usuario.CPFCNPJ_MAX_LENGTH)
+                    .WithMessage(DOCUMENTO_INVALIDO_ERROR_MESSAGE)
                 .Must((_, cpfcnpj) => cpfcnpj.IsValidCpf() || cpfcnpj.IsValidCnpj())
                     .WithMessage(DOCUMENTO_INVALIDO_ERROR_MESSAGE)
                 .MustAsync(async (_, cpfcnpj, cancellation) => !await usuarioRepository.ExistsByCpfCnpjAsync(cpfcnpj, cancellation))
@@ -52,8 +81,11 @@ namespace DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario
         {
             RuleFor(usuario => usuario.Email).Cascade(CascadeMode.Stop)
                 .NotEmpty()
+                     .WithMessage(EMAIL_INVALIDO_ERROR_MESSAGE)
                 .NotNull()
+                     .WithMessage(EMAIL_INVALIDO_ERROR_MESSAGE)
                 .MaximumLength(Usuario.EMAIL_MAX_LENGTH)
+                     .WithMessage(EMAIL_INVALIDO_ERROR_MESSAGE)
                 .Must((_, email) => email.IsValidEmail())
                     .WithMessage(EMAIL_INVALIDO_ERROR_MESSAGE)
                 .MustAsync(async (_, cpfcnpj, cancellation) => !await usuarioRepository.ExistsByEmailAsync(cpfcnpj, cancellation))

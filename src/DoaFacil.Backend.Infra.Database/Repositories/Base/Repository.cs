@@ -49,5 +49,8 @@ namespace DoaFacil.Backend.Infra.Database.Repositories.Base
             _dbSet.UpdateRange(entities);
             return Task.CompletedTask;
         }
+
+        public virtual Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken = default) 
+            => _dbSet.ToListAsync(cancellationToken);
     }
 }

@@ -13,6 +13,7 @@ namespace DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsua
         public const string BAIRRO_INVALIDO_ERROR_MESSAGE = "Bairro inválido";
         public const string CIDADE_INVALIDA_ERROR_MESSAGE = "Cidade inválida";
         public const string USUARIO_NAO_ENCONTRADO_ERROR_MESSAGE = "Usuário não encontrado";
+        public const string RUA_INVALIDA_ERROR_MESSAGE = "Rua é inválida";
         private readonly ICidadeRepository cidadeRepository;
         private readonly IUsuarioRepository usuarioRepository;
 
@@ -25,6 +26,7 @@ namespace DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsua
             ApplyRulesToBairro();
             ApplyRulesToCidadeId();
             ApplyRulesToUsuarioId();
+            ApplyRulesToRua();
         }
 
         private void ApplyRulesToCep()
@@ -69,6 +71,15 @@ namespace DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsua
                 .NotNull()
                 .MustAsync(async (_, usuarioId, cancellation) => await usuarioRepository.ExistsAsync(usuarioId, cancellation))
                 .WithMessage(USUARIO_NAO_ENCONTRADO_ERROR_MESSAGE);
+        }
+
+        private void ApplyRulesToRua()
+        {
+            RuleFor(endereco => endereco.Rua).Cascade(CascadeMode.Stop)
+                .NotEmpty()
+                .NotNull()
+                .MaximumLength(EnderecoUsuario.RUA_MAX_LENGTH)
+                .WithMessage(RUA_INVALIDA_ERROR_MESSAGE);
         }
     }
 }

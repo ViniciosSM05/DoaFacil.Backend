@@ -15,7 +15,7 @@ namespace DoaFacil.Backend.Application.Mapper.Converters.UsuarioConverters
             destination.SetEmail(source.Email);
             destination.SetCelular(source.Celular);
             destination.SetSenha(EncryptExtensions.Encrypt(source.Senha));
-            destination.SetDataNascimento(source.DataNascimento);
+            destination.SetDataNascimento(source.DataNascimento.GetValueOrDefault());
 
             return destination;
         }

@@ -10,7 +10,7 @@ namespace DoaFacil.Backend.Application.Mapper.Converters.CidadeConverters
         {
             destination = new();
             destination.SetNome(source.Nome);
-            destination.SetUfId(source.UfId);   
+            destination.SetUfId(source.UfId.GetValueOrDefault());   
             return destination;
         }
     }
