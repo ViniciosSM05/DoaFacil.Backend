@@ -4,7 +4,7 @@ using DoaFacil.Backend.Application.AppServices.Interfaces;
 using DoaFacil.Backend.Application.Commands.Cidades.AddCidade;
 using DoaFacil.Backend.Application.Commands.Dispatcher;
 using DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsuario;
-using DoaFacil.Backend.Application.Commands.Notifications.AddNotificationMessage;
+using DoaFacil.Backend.Application.Commands.Notifications.AddNotificationFieldMessage;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
 using DoaFacil.Backend.Application.Dtos.Usuarios;
 using DoaFacil.Backend.Domain.Constants;
@@ -26,19 +26,21 @@ namespace DoaFacil.Backend.Application.AppServices
         , ITokenAuthService tokenAuthService) : AppService(commandDispatcher, notifications, unitOfWork, mapper), IUsuarioAppService
     {
         public const string DEFAULT_ROLE = "user";
-        public const string UNAUTHORIZE_ERROR_MESSAGE = "Usuário não encontrado";
+        public const string UNAUTHORIZE_ERROR_MESSAGE = "Combinação de email e senha inválida";
+        public const string EMAIL_EMPTY_ERROR_MESSAGE = "Por favor, preencha o e-mail";
+        public const string SENHA_EMPTY_ERROR_MESSAGE = "Por favor, preencha a senha";
         
         public async Task<Guid> AddUsuarioAsync(AddUsuarioDto dto, CancellationToken cancellationToken)
         {
             using (_unitOfWork.Start())
             {
-                var addUsuarioCommand = mapper.Map<AddUsuarioCommand>(dto);
+                var addUsuarioCommand = _mapper.Map<AddUsuarioCommand>(dto);
                 var usuarioId = await _commandDispatcher.DispatchAsync(addUsuarioCommand, cancellationToken);
 
-                var addCidadeCommand = mapper.Map<AddCidadeCommand>(dto.Endereco?.Cidade);
+                var addCidadeCommand = _mapper.Map<AddCidadeCommand>(dto.Endereco?.Cidade);
                 var cidadeId = await _commandDispatcher.DispatchAsync(addCidadeCommand, cancellationToken);
 
-                var addEnderecoUsuarioCommand = mapper.Map<AddEnderecoUsuarioCommand>(dto.Endereco);
+                var addEnderecoUsuarioCommand = _mapper.Map<AddEnderecoUsuarioCommand>(dto.Endereco);
                 addEnderecoUsuarioCommand.CidadeId = cidadeId;
                 addEnderecoUsuarioCommand.UsuarioId = usuarioId;
                 await _commandDispatcher.DispatchAsync(addEnderecoUsuarioCommand, cancellationToken);
@@ -50,7 +52,7 @@ namespace DoaFacil.Backend.Application.AppServices
             }
         }
 
-        public async Task<TokenAuthModel> AuthenticateAsync(string email, string senha, CancellationToken cancellationToken)
+        public async Task<AuthInfoResultDto> AuthenticateAsync(string email, string senha, CancellationToken cancellationToken)
         {
             var user = await ValidateLoginAsync(email, senha, cancellationToken);
             if (user is null) return null;
@@ -63,15 +65,28 @@ namespace DoaFacil.Backend.Application.AppServices
                 UserRole = DEFAULT_ROLE
             });
 
-            return tokenModel;
+            var result = _mapper.Map<AuthInfoResultDto>(tokenModel);
+            result.User.Nome = user.Nome;
+            result.User.Id = user.Id;   
+            result.User.Email = user.Email;
+
+            return result;
         }
 
         private async Task<Usuario> ValidateLoginAsync(string email, string senha, CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(email)) 
+                await _commandDispatcher.DispatchAsync(new AddNotificationFieldMessageCommand(nameof(email), EMAIL_EMPTY_ERROR_MESSAGE, ErrorCodes.GENERIC), cancellationToken);
+
+            if (string.IsNullOrWhiteSpace(senha)) 
+                await _commandDispatcher.DispatchAsync(new AddNotificationFieldMessageCommand(nameof(senha), SENHA_EMPTY_ERROR_MESSAGE, ErrorCodes.GENERIC), cancellationToken);
+
+            if (!_notifications.IsValid) return null;
+
             var user = await usuarioRepository.GetByEmailSenhaAsync(email, EncryptExtensions.Encrypt(senha), cancellationToken);
             if (user is null)
             {
-                await _commandDispatcher.DispatchAsync(new AddNotificationMessageCommand(UNAUTHORIZE_ERROR_MESSAGE, ErrorCodes.NOT_FOUND), cancellationToken);
+                await _commandDispatcher.DispatchAsync(new AddNotificationFieldMessageCommand(nameof(email), UNAUTHORIZE_ERROR_MESSAGE, ErrorCodes.NOT_FOUND), cancellationToken);
                 return null;
             }
 
