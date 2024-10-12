@@ -7,6 +7,17 @@ namespace DoaFacil.Backend.Domain.Entities.CategoriaEntity
     {
         public const int NOME_MAX_LENGTH = 40;
 
+        public Categoria()
+        {
+            
+        }
+
+        public Categoria(Guid id, string nome)
+        {
+            SetId(id);
+            SetNome(nome);
+        }
+
         public string Nome { get; private set; }
 
         public ICollection<Anuncio> Anuncios { get; private set; } = [];
