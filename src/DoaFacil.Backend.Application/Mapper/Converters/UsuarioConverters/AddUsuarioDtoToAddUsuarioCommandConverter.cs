@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
-using DoaFacil.Backend.Application.Dtos.Usuarios;
+using DoaFacil.Backend.Shared.Dtos.Usuarios;
 
 namespace DoaFacil.Backend.Application.Mapper.Converters.UsuarioConverters
 {

@@ -11,23 +11,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Appl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{77F55F39-3F6C-4189-9B5C-FE471DAA68BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Api", "DoaFacil.Backend.Api\DoaFacil.Backend.Api.csproj", "{1BDCBE48-FBA5-40B5-8B4A-BA4791AEBF6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Api", "DoaFacil.Backend.Api\DoaFacil.Backend.Api.csproj", "{1BDCBE48-FBA5-40B5-8B4A-BA4791AEBF6E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{08F70682-F3E3-4CD8-AE63-24E14CFEBC8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Application", "DoaFacil.Backend.Application\DoaFacil.Backend.Application.csproj", "{C36D56AC-5074-44D7-8090-D164FEF5FF9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Application", "DoaFacil.Backend.Application\DoaFacil.Backend.Application.csproj", "{C36D56AC-5074-44D7-8090-D164FEF5FF9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Domain", "DoaFacil.Backend.Domain\DoaFacil.Backend.Domain.csproj", "{1C7FE7FB-EDD6-4C6A-B794-0265DE91317E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Domain", "DoaFacil.Backend.Domain\DoaFacil.Backend.Domain.csproj", "{1C7FE7FB-EDD6-4C6A-B794-0265DE91317E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Infra.Database", "DoaFacil.Backend.Infra.Database\DoaFacil.Backend.Infra.Database.csproj", "{06D5B3A4-3AA9-40DE-A12C-EAD8E4149E3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Infra.Database", "DoaFacil.Backend.Infra.Database\DoaFacil.Backend.Infra.Database.csproj", "{06D5B3A4-3AA9-40DE-A12C-EAD8E4149E3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Infra.Configuration", "DoaFacil.Backend.Infra.Configuration\DoaFacil.Backend.Infra.Configuration.csproj", "{DD51BB26-49F4-4005-9F4D-5F0228196C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Infra.Configuration", "DoaFacil.Backend.Infra.Configuration\DoaFacil.Backend.Infra.Configuration.csproj", "{DD51BB26-49F4-4005-9F4D-5F0228196C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Infra.Crosscutting", "DoaFacil.Backend.Infra.Crosscutting\DoaFacil.Backend.Infra.Crosscutting.csproj", "{2E9731FD-1736-4BC7-9D6C-98605A034665}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Infra.Crosscutting", "DoaFacil.Backend.Infra.Crosscutting\DoaFacil.Backend.Infra.Crosscutting.csproj", "{2E9731FD-1736-4BC7-9D6C-98605A034665}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Infra.IoC", "DoaFacil.Backend.Infra.Ioc\DoaFacil.Backend.Infra.IoC.csproj", "{3383E157-60F7-4D27-806C-0C4CF0D550F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Infra.IoC", "DoaFacil.Backend.Infra.Ioc\DoaFacil.Backend.Infra.IoC.csproj", "{3383E157-60F7-4D27-806C-0C4CF0D550F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Infra.Authentication", "DoaFacil.Backend.Infra.Authentication\DoaFacil.Backend.Infra.Authentication.csproj", "{48BDDC28-82DB-43AB-91A5-6FD55F5752D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoaFacil.Backend.Infra.Authentication", "DoaFacil.Backend.Infra.Authentication\DoaFacil.Backend.Infra.Authentication.csproj", "{48BDDC28-82DB-43AB-91A5-6FD55F5752D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Shared", "5 - Shared", "{A756E75E-8620-45E9-9880-3CE601FF8073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoaFacil.Backend.Shared", "DoaFacil.Backend.Shared\DoaFacil.Backend.Shared.csproj", "{3C1BAE76-67DB-417C-8D3B-23380D5F71FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,10 @@ Global
 		{48BDDC28-82DB-43AB-91A5-6FD55F5752D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48BDDC28-82DB-43AB-91A5-6FD55F5752D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48BDDC28-82DB-43AB-91A5-6FD55F5752D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C1BAE76-67DB-417C-8D3B-23380D5F71FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C1BAE76-67DB-417C-8D3B-23380D5F71FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C1BAE76-67DB-417C-8D3B-23380D5F71FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C1BAE76-67DB-417C-8D3B-23380D5F71FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +92,8 @@ Global
 		{2E9731FD-1736-4BC7-9D6C-98605A034665} = {08F70682-F3E3-4CD8-AE63-24E14CFEBC8A}
 		{3383E157-60F7-4D27-806C-0C4CF0D550F2} = {08F70682-F3E3-4CD8-AE63-24E14CFEBC8A}
 		{48BDDC28-82DB-43AB-91A5-6FD55F5752D5} = {08F70682-F3E3-4CD8-AE63-24E14CFEBC8A}
+		{A756E75E-8620-45E9-9880-3CE601FF8073} = {FA8E442D-3D4C-42A6-95AD-147E24AD4B34}
+		{3C1BAE76-67DB-417C-8D3B-23380D5F71FE} = {A756E75E-8620-45E9-9880-3CE601FF8073}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {428D582C-25CD-4AA0-A639-FB0EA50994A3}

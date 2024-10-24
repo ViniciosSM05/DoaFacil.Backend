@@ -61,7 +61,8 @@ namespace DoaFacil.Backend.Infra.Database.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.HasIndex("Codigo");
+                    b.HasIndex("Codigo")
+                        .IsUnique();
 
                     b.HasIndex("Data");
 
@@ -180,19 +181,26 @@ namespace DoaFacil.Backend.Infra.Database.Migrations
                     b.Property<Guid>("AnuncioId")
                         .HasColumnType("char(36)");
 
+                    b.Property<byte[]>("Conteudo")
+                        .IsRequired()
+                        .HasColumnType("MEDIUMBLOB");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
                     b.Property<bool>("Principal")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Url")
+                    b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AnuncioId");
-
-                    b.HasIndex("Url");
 
                     b.ToTable("imagem_anuncio", (string)null);
                 });

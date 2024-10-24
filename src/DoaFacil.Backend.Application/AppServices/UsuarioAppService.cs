@@ -6,7 +6,6 @@ using DoaFacil.Backend.Application.Commands.Dispatcher;
 using DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsuario;
 using DoaFacil.Backend.Application.Commands.Notifications.AddNotificationFieldMessage;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
-using DoaFacil.Backend.Application.Dtos.Usuarios;
 using DoaFacil.Backend.Domain.Constants;
 using DoaFacil.Backend.Domain.Entities.UsuarioEntity;
 using DoaFacil.Backend.Domain.Notification;
@@ -15,6 +14,7 @@ using DoaFacil.Backend.Infra.Authentication.AuthModels.Token;
 using DoaFacil.Backend.Infra.Authentication.AuthServices.Token;
 using DoaFacil.Backend.Infra.Crosscutting.Extensions;
 using DoaFacil.Backend.Infra.Database.UoW;
+using DoaFacil.Backend.Shared.Dtos.Usuarios;
 
 namespace DoaFacil.Backend.Application.AppServices
 {

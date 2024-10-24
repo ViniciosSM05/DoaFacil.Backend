@@ -1,5 +1,4 @@
-﻿using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
-using DoaFacil.Backend.Application.Dtos.Ufs;
+﻿using DoaFacil.Backend.Shared.Dtos.Ufs;
 
 namespace DoaFacil.Backend.Application.AppServices.Interfaces
 {

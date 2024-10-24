@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DoaFacil.Backend.Application.Dtos.Ufs;
 using DoaFacil.Backend.Domain.Entities.UfEntity;
+using DoaFacil.Backend.Shared.Dtos.Ufs;
 
 namespace DoaFacil.Backend.Application.Mapper.Converters.UfConverters
 {

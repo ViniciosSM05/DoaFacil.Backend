@@ -86,5 +86,20 @@ namespace DoaFacil.Backend.Infra.Crosscutting.Extensions
 
             return regex.IsMatch(email);
         }
+
+        public static byte[] Base64ImageToBytes(this string base64)
+        {
+            try
+            {
+                string base64Content = base64.Contains(',') ? base64.Split(',')[1] : base64;
+                byte[] imageBytes = Convert.FromBase64String(base64Content);
+
+                return imageBytes;
+            }
+            catch (Exception)
+            {
+                return new byte[base64.Length];
+            }
+        }
     }
 }

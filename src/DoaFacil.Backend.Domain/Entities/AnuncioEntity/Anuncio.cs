@@ -8,6 +8,7 @@ namespace DoaFacil.Backend.Domain.Entities.AnuncioEntity
 {
     public class Anuncio : BaseEntity
     {
+        public const decimal META_MIN_VALUE = 0;
         public const int TITULO_MAX_LENGTH = 40;
         public const int CHAVE_PIX_MAX_LENGTH = 40;
 

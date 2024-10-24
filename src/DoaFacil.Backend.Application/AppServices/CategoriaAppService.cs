@@ -2,10 +2,10 @@
 using DoaFacil.Backend.Application.AppServices.Base;
 using DoaFacil.Backend.Application.AppServices.Interfaces;
 using DoaFacil.Backend.Application.Commands.Dispatcher;
-using DoaFacil.Backend.Application.Dtos.Categorias;
 using DoaFacil.Backend.Domain.Notification;
 using DoaFacil.Backend.Domain.Repositories;
 using DoaFacil.Backend.Infra.Database.UoW;
+using DoaFacil.Backend.Shared.Dtos.Categorias;
 
 namespace DoaFacil.Backend.Application.AppServices
 {

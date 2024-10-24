@@ -1,5 +1,6 @@
 ﻿using DoaFacil.Backend.Domain.Entities.ImagemAnuncioEntity;
 using DoaFacil.Backend.Infra.Database.Mappings.Base;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DoaFacil.Backend.Infra.Database.Mappings
@@ -12,14 +13,25 @@ namespace DoaFacil.Backend.Infra.Database.Mappings
         {
             base.Configure(builder);
 
-            builder.Property(i => i.Principal).IsRequired();
-            builder.Property(i => i.Url).IsRequired().HasMaxLength(ImagemAnuncio.URL_MAX_LENGTH);
+            builder.Property(i => i.Nome)
+                .IsRequired()
+                .HasMaxLength(ImagemAnuncio.NOME_MAX_LENGTH);
+
+            builder.Property(i => i.Conteudo)
+                .IsRequired()
+                .HasColumnType("MEDIUMBLOB");
+
+            builder.Property(i => i.Tipo)
+                .IsRequired()
+                .HasMaxLength(ImagemAnuncio.TIPO_MAX_LENGTH);
+
+            builder.Property(i => i.Principal)
+                .IsRequired();
 
             builder.HasOne(i => i.Anuncio)
-                   .WithMany(a => a.Imagens)
-                   .HasForeignKey(i => i.AnuncioId);
+                .WithMany(a => a.Imagens)
+                .HasForeignKey(i => i.AnuncioId);
 
-            builder.HasIndex(i => i.Url);
             builder.HasIndex(i => i.AnuncioId);
         }
     }

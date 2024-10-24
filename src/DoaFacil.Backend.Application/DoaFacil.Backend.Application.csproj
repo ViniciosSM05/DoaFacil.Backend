@@ -17,6 +17,7 @@
     <ProjectReference Include="..\DoaFacil.Backend.Infra.Authentication\DoaFacil.Backend.Infra.Authentication.csproj" />
     <ProjectReference Include="..\DoaFacil.Backend.Infra.Crosscutting\DoaFacil.Backend.Infra.Crosscutting.csproj" />
     <ProjectReference Include="..\DoaFacil.Backend.Infra.Database\DoaFacil.Backend.Infra.Database.csproj" />
+    <ProjectReference Include="..\DoaFacil.Backend.Shared\DoaFacil.Backend.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,5 +5,6 @@ namespace DoaFacil.Backend.Domain.Repositories
 {
     public interface IImagemAnuncioRepository : IRepository<ImagemAnuncio>
     {
+        Task<List<ImagemAnuncio>> GetByAnuncioIdAsync(Guid anuncioId, CancellationToken cancellationToken);
     }
 }

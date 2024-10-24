@@ -1,24 +1,32 @@
 ﻿using AutoMapper;
+using DoaFacil.Backend.Application.Commands.Anuncios.AddAnuncio;
 using DoaFacil.Backend.Application.Commands.Cidades.AddCidade;
 using DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsuario;
+using DoaFacil.Backend.Application.Commands.ImagensAnuncio;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
-using DoaFacil.Backend.Application.Dtos.Categorias;
-using DoaFacil.Backend.Application.Dtos.Cidades;
-using DoaFacil.Backend.Application.Dtos.EnderecosUsuario;
-using DoaFacil.Backend.Application.Dtos.Ufs;
-using DoaFacil.Backend.Application.Dtos.Usuarios;
+using DoaFacil.Backend.Application.Mapper.Converters.AnuncioConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.AuthConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.CategoriaConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.CidadeConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.EnderecoConverters;
+using DoaFacil.Backend.Application.Mapper.Converters.ImagemAnuncioConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.UfConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.UsuarioConverters;
+using DoaFacil.Backend.Domain.Entities.AnuncioEntity;
 using DoaFacil.Backend.Domain.Entities.CategoriaEntity;
 using DoaFacil.Backend.Domain.Entities.CidadeEntity;
 using DoaFacil.Backend.Domain.Entities.EnderecoUsuarioEntity;
+using DoaFacil.Backend.Domain.Entities.ImagemAnuncioEntity;
 using DoaFacil.Backend.Domain.Entities.UfEntity;
 using DoaFacil.Backend.Domain.Entities.UsuarioEntity;
 using DoaFacil.Backend.Infra.Authentication.AuthModels.Token;
+using DoaFacil.Backend.Shared.Dtos.Anuncios;
+using DoaFacil.Backend.Shared.Dtos.Categorias;
+using DoaFacil.Backend.Shared.Dtos.Cidades;
+using DoaFacil.Backend.Shared.Dtos.EnderecosUsuario;
+using DoaFacil.Backend.Shared.Dtos.ImagensAnuncio;
+using DoaFacil.Backend.Shared.Dtos.Ufs;
+using DoaFacil.Backend.Shared.Dtos.Usuarios;
 
 namespace DoaFacil.Backend.Application.Mapper
 {
@@ -32,6 +40,8 @@ namespace DoaFacil.Backend.Application.Mapper
             MapUf();
             MapCategoria();
             MapAuth();
+            MapAnuncio();
+            MapImagemAnuncio();
         }
 
         private void MapCidade()
@@ -57,5 +67,17 @@ namespace DoaFacil.Backend.Application.Mapper
         private void MapCategoria() => CreateMap<Categoria, CategoriaDto>().ConvertUsing<CategoriaToCategoriaDtoConverter>();
 
         private void MapAuth() => CreateMap<TokenAuthModel, AuthInfoResultDto>().ConvertUsing<TokenAuthModelToAuthInfoResultDtoConverter>();
+
+        private void MapAnuncio()
+        {
+            CreateMap<AddAnuncioDto, AddAnuncioCommand>().ConvertUsing<AddAnuncioDtoToAddAnuncioCommandConverter>();
+            CreateMap<AddAnuncioCommand, Anuncio>().ConvertUsing<AddAnuncioCommandToAnuncioConverter>();
+        }
+
+        private void MapImagemAnuncio()
+        {
+            CreateMap<AddImagemAnuncioDto, AddImagemAnuncioCommand>().ConvertUsing<AddImagemAnuncioDtoToAddImagemAnuncioCommandConverter>();
+            CreateMap<AddImagemAnuncioCommand, ImagemAnuncio>().ConvertUsing<AddImagemAnuncioCommandToImagemAnuncioConverter>();
+        }
     }
 }

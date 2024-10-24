@@ -1,4 +1,4 @@
-﻿using DoaFacil.Backend.Application.Dtos.Categorias;
+﻿using DoaFacil.Backend.Shared.Dtos.Categorias;
 
 namespace DoaFacil.Backend.Application.AppServices.Interfaces
 {

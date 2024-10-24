@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsuario;
-using DoaFacil.Backend.Application.Dtos.EnderecosUsuario;
+using DoaFacil.Backend.Shared.Dtos.EnderecosUsuario;
 
 namespace DoaFacil.Backend.Application.Mapper.Converters.EnderecoConverters
 {

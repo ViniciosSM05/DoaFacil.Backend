@@ -28,7 +28,7 @@ namespace DoaFacil.Backend.Infra.Database.Mappings
                    .WithMany(u => u.Anuncios)
                    .HasForeignKey(a => a.UsuarioId);
 
-            builder.HasIndex(a => a.Codigo);
+            builder.HasIndex(a => a.Codigo).IsUnique();
             builder.HasIndex(a => a.Data);
             builder.HasIndex(a => a.CategoriaId);
             builder.HasIndex(a => a.UsuarioId);

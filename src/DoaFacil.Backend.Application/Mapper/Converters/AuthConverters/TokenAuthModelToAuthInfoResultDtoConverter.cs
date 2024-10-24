@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DoaFacil.Backend.Application.Dtos.Usuarios;
 using DoaFacil.Backend.Infra.Authentication.AuthModels.Token;
+using DoaFacil.Backend.Shared.Dtos.Usuarios;
 
 namespace DoaFacil.Backend.Application.Mapper.Converters.AuthConverters
 {

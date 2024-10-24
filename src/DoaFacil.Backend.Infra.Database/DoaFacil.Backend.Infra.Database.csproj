@@ -23,10 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DoaFacil.Backend.Domain\DoaFacil.Backend.Domain.csproj" />
     <ProjectReference Include="..\DoaFacil.Backend.Infra.Configuration\DoaFacil.Backend.Infra.Configuration.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\DoaFacil.Backend.Shared\DoaFacil.Backend.Shared.csproj" />
   </ItemGroup>
 
 </Project>

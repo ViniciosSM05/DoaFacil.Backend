@@ -17,13 +17,13 @@ namespace DoaFacil.Backend.Infra.Authentication.AuthServices.Token
             var expiresIn = DateTime.UtcNow.AddHours(authConfig.TempoDeValidadeDoTokenEmHoras);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(
-                [
+                Subject = new ClaimsIdentity(new List<Claim>
+                {
                     new(ClaimTypes.NameIdentifier, generateModel.UserId.ToString()),
                     new(ClaimTypes.Name, generateModel.UserName),
                     new(ClaimTypes.Email, generateModel.UserEmail),
                     new(ClaimTypes.Role, generateModel.UserRole),
-                ]),
+                }),
                 Expires = expiresIn,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

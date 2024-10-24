@@ -1,8 +1,8 @@
 ﻿using DoaFacil.Backend.Api.Controllers.Base;
-using DoaFacil.Backend.Api.Dtos.Response;
 using DoaFacil.Backend.Application.AppServices.Interfaces;
-using DoaFacil.Backend.Application.Dtos.Ufs;
 using DoaFacil.Backend.Domain.Notification;
+using DoaFacil.Backend.Shared.Dtos.Response;
+using DoaFacil.Backend.Shared.Dtos.Ufs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

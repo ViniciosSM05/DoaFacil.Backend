@@ -1,9 +1,10 @@
-﻿using DoaFacil.Backend.Api.Dtos.Validation;
-using DoaFacil.Backend.Domain.Notification;
+﻿using DoaFacil.Backend.Domain.Notification;
 using FluentValidation.Results;
 using FluentValidation;
-using DoaFacil.Backend.Api.Dtos.Response;
 using Microsoft.AspNetCore.Mvc;
+using DoaFacil.Backend.Shared.Dtos.Response;
+using DoaFacil.Backend.Shared.Enums;
+using DoaFacil.Backend.Shared.Dtos.Validation;
 
 namespace DoaFacil.Backend.Api.Controllers.Base
 {

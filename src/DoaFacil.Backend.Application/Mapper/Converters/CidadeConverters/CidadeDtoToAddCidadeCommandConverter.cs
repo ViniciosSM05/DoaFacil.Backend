@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DoaFacil.Backend.Application.Commands.Cidades.AddCidade;
-using DoaFacil.Backend.Application.Dtos.Cidades;
+using DoaFacil.Backend.Shared.Dtos.Cidades;
 
 namespace DoaFacil.Backend.Application.Mapper.Converters.CidadeConverters
 {

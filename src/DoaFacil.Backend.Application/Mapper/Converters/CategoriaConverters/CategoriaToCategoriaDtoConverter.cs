@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DoaFacil.Backend.Application.Dtos.Categorias;
 using DoaFacil.Backend.Domain.Entities.CategoriaEntity;
+using DoaFacil.Backend.Shared.Dtos.Categorias;
 
 namespace DoaFacil.Backend.Application.Mapper.Converters.CategoriaConverters
 {
