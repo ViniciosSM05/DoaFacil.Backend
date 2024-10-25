@@ -19,5 +19,10 @@ namespace DoaFacil.Backend.Api.Controllers
         [HttpGet]
         public Task<ActionResult<DoaFacilDataResponseDto<List<AnuncioLista.Data>>>> GetAnunciosAsync([FromQuery] AnuncioLista.Filtro filtro, CancellationToken cancellationToken)
             => ExecuteAsync(() => anuncioAppService.GetAnunciosAsync(filtro, cancellationToken));
+
+        [HttpGet]
+        [Route("{id:guid}")]
+        public Task<ActionResult<DoaFacilDataResponseDto<AnuncioEditDto>>> GetAnuncioEditAsync(Guid id, CancellationToken cancellationToken)
+            => ExecuteAsync(() => anuncioAppService.GetAnuncioEditAsync(id, cancellationToken));
     }
 }

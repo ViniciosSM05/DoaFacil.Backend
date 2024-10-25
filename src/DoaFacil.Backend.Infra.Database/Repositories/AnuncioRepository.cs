@@ -33,6 +33,29 @@ namespace DoaFacil.Backend.Infra.Database.Repositories
             }).ToListAsync(cancellationToken);
         }
 
+        public async Task<AnuncioEditDto> GetAnuncioEditAsync(Guid anuncioId, CancellationToken cancellationToken)
+            => await (
+                from anuncio in _dbSet.AsQueryable()
+                join img in _context.ImagensAnuncios on anuncio.Id equals img.AnuncioId
+                where anuncio.Id == anuncioId
+                select new AnuncioEditDto
+                {
+                    Id = anuncio.Id,
+                    CategoriaId = anuncio.CategoriaId,
+                    ChavePix = anuncio.ChavePix,
+                    Descricao = anuncio.Descricao,
+                    Imagem = new ImagemAnuncioEditDto
+                    {
+                        Bytes = img.Conteudo,
+                        Nome = img.Nome,
+                        Principal = img.Principal,
+                        Tipo = img.Tipo,
+                    },
+                    Meta = anuncio.Meta,
+                    Titulo = anuncio.Titulo,
+                }
+            ).FirstOrDefaultAsync(cancellationToken);
+
         private IQueryable<Anuncio> BuildFiltroGetAnuncios(AnuncioLista.Filtro filtro, Guid usuarioId)
         {
             var query = _dbSet

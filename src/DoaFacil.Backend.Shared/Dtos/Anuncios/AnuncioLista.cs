@@ -1,8 +1,9 @@
-﻿using DoaFacil.Backend.Shared.Enums;
+﻿using DoaFacil.Backend.Infra.Crosscutting.Extensions;
+using DoaFacil.Backend.Shared.Enums;
 
 namespace DoaFacil.Backend.Shared.Dtos.Anuncios
 {
-    public class AnuncioLista
+    public static class AnuncioLista
     {
         public class Filtro
         {
@@ -19,17 +20,7 @@ namespace DoaFacil.Backend.Shared.Dtos.Anuncios
             public string ImagemNome { get; set; }
             public byte[] ImagemBytes { get; set; }
             public string ImagemTipo { get; set; }
-            public string ImagemBase64
-            {
-                get
-                {
-                    if (ImagemBytes == null || ImagemBytes.Length == 0 || string.IsNullOrWhiteSpace(ImagemTipo))
-                        return null;
-
-                    string base64String = Convert.ToBase64String(ImagemBytes);
-                    return $"data:{ImagemTipo};base64,{base64String}";
-                }
-            }
+            public string ImagemBase64 => ImagemBytes.ConvertImgToBase64(ImagemTipo);
             public string Titulo { get; set; }
             public string NomeCategoria { get; set; }
             public int Codigo { get; set; }

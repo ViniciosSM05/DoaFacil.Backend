@@ -8,5 +8,6 @@ namespace DoaFacil.Backend.Domain.Repositories
     {
         Task<int> GetMaxCodigoAsync(CancellationToken cancellationToken);
         Task<List<AnuncioLista.Data>> GetAnunciosAsync(AnuncioLista.Filtro filtro, Guid usuarioId, CancellationToken cancellationToken);
+        Task<AnuncioEditDto> GetAnuncioEditAsync(Guid anuncioId, CancellationToken cancellationToken);
     }
 }
