@@ -20,7 +20,13 @@ namespace DoaFacil.Backend.Infra.Database.Mappings
                    .WithMany(a => a.Doacoes)
                    .HasForeignKey(d => d.AnuncioId);
 
+
+            builder.HasOne(d => d.Usuario)
+                   .WithMany(a => a.Doacoes)
+                   .HasForeignKey(d => d.UsuarioId);
+
             builder.HasIndex(d => d.AnuncioId);
+            builder.HasIndex(d => d.UsuarioId);
         }
     }
 }

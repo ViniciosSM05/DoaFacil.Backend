@@ -7,5 +7,6 @@ namespace DoaFacil.Backend.Application.AppServices.Interfaces
         Task<Guid> AddAnuncioAsync(AddAnuncioDto dto, CancellationToken cancellationToken);
         Task<List<AnuncioLista.Data>> GetAnunciosAsync(AnuncioLista.Filtro filtro, CancellationToken cancellationToken);
         Task<AnuncioEditDto> GetAnuncioEditAsync(Guid anuncioId, CancellationToken cancellationToken);
+        Task<AnuncioDetalhesDto> GetAnuncioDetalhesAsync(Guid anuncioId, CancellationToken cancellationToken);
     }
 }

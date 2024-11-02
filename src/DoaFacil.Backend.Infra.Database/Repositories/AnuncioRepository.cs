@@ -33,6 +33,29 @@ namespace DoaFacil.Backend.Infra.Database.Repositories
             }).ToListAsync(cancellationToken);
         }
 
+        public async Task<AnuncioDetalhesDto> GetAnuncioDetalhesAsync(Guid anuncioId, CancellationToken cancellationToken)
+        {
+            return await _dbSet.AsNoTracking()
+                .Where(x => x.Id == anuncioId)
+                .Select(x => new AnuncioDetalhesDto
+                {
+                    Id = x.Id,
+                    Meta = x.Meta,
+                    Titulo = x.Titulo,
+                    Codigo = x.Codigo,
+                    DataAnuncio = x.Data,
+                    ChavePix = x.ChavePix,
+                    Descricao = x.Descricao,
+                    Anunciante = x.Usuario.Nome,
+                    NomeCategoria = x.Categoria.Nome,
+                    Arrecadado = x.Doacoes.Sum(x => x.Valor),
+                    ImagemTipo = x.Imagens.FirstOrDefault().Tipo,
+                    ImagemBytes = x.Imagens.FirstOrDefault().Conteudo,
+                    TotalApoiadores = x.Doacoes.GroupBy(x => x.UsuarioId).Count(),
+                })
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
         public async Task<AnuncioEditDto> GetAnuncioEditAsync(Guid anuncioId, CancellationToken cancellationToken)
             => await (
                 from anuncio in _dbSet.AsQueryable()

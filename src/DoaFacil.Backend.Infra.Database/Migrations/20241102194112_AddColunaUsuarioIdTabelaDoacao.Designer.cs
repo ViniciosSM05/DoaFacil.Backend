@@ -4,6 +4,7 @@ using DoaFacil.Backend.Infra.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoaFacil.Backend.Infra.Database.Migrations
 {
     [DbContext(typeof(DoaFacilDbContext))]
-    partial class DoaFacilDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241102194112_AddColunaUsuarioIdTabelaDoacao")]
+    partial class AddColunaUsuarioIdTabelaDoacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

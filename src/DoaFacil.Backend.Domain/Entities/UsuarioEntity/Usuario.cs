@@ -1,5 +1,6 @@
 ﻿using DoaFacil.Backend.Domain.Entities.AnuncioEntity;
 using DoaFacil.Backend.Domain.Entities.Base;
+using DoaFacil.Backend.Domain.Entities.DoacaoEntity;
 using DoaFacil.Backend.Domain.Entities.EnderecoUsuarioEntity;
 
 namespace DoaFacil.Backend.Domain.Entities.UsuarioEntity
@@ -21,6 +22,7 @@ namespace DoaFacil.Backend.Domain.Entities.UsuarioEntity
 
         public ICollection<EnderecoUsuario> Enderecos { get; private set; } = [];
         public ICollection<Anuncio> Anuncios { get; private set; } = [];
+        public ICollection<Doacao> Doacoes { get; private set; } = [];
 
         public void SetNome(string nome) => Nome = nome;
         public void SetCpfCnpj(string cpfCnpj) => CpfCnpj = cpfCnpj;

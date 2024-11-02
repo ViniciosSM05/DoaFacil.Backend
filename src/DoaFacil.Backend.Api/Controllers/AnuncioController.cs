@@ -24,5 +24,10 @@ namespace DoaFacil.Backend.Api.Controllers
         [Route("{id:guid}")]
         public Task<ActionResult<DoaFacilDataResponseDto<AnuncioEditDto>>> GetAnuncioEditAsync(Guid id, CancellationToken cancellationToken)
             => ExecuteAsync(() => anuncioAppService.GetAnuncioEditAsync(id, cancellationToken));
+
+        [HttpGet]
+        [Route("detalhes/{id:guid}")]
+        public Task<ActionResult<DoaFacilDataResponseDto<AnuncioDetalhesDto>>> GetAnuncioDetalhesAsync(Guid id, CancellationToken cancellationToken)
+            => ExecuteAsync(() => anuncioAppService.GetAnuncioDetalhesAsync(id, cancellationToken));
     }
 }

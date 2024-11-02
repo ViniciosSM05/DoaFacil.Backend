@@ -52,5 +52,8 @@ namespace DoaFacil.Backend.Application.AppServices
 
         public async Task<AnuncioEditDto> GetAnuncioEditAsync(Guid anuncioId, CancellationToken cancellationToken)
             => await _anuncioRepository.GetAnuncioEditAsync(anuncioId, cancellationToken);
+
+        public async Task<AnuncioDetalhesDto> GetAnuncioDetalhesAsync(Guid anuncioId, CancellationToken cancellationToken)
+            => await _anuncioRepository.GetAnuncioDetalhesAsync(anuncioId, cancellationToken);
     }
 }
