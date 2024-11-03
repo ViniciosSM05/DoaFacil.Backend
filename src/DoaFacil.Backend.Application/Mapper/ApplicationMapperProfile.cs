@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DoaFacil.Backend.Application.Commands.Anuncios.AddAnuncio;
 using DoaFacil.Backend.Application.Commands.Cidades.AddCidade;
+using DoaFacil.Backend.Application.Commands.Doacoes.AddDoacao;
 using DoaFacil.Backend.Application.Commands.EnderecosUsuario.AddEnderecoUsuario;
 using DoaFacil.Backend.Application.Commands.ImagensAnuncio;
 using DoaFacil.Backend.Application.Commands.Usuarios.AddUsuario;
@@ -8,6 +9,7 @@ using DoaFacil.Backend.Application.Mapper.Converters.AnuncioConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.AuthConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.CategoriaConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.CidadeConverters;
+using DoaFacil.Backend.Application.Mapper.Converters.DoacaoConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.EnderecoConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.ImagemAnuncioConverters;
 using DoaFacil.Backend.Application.Mapper.Converters.UfConverters;
@@ -15,6 +17,7 @@ using DoaFacil.Backend.Application.Mapper.Converters.UsuarioConverters;
 using DoaFacil.Backend.Domain.Entities.AnuncioEntity;
 using DoaFacil.Backend.Domain.Entities.CategoriaEntity;
 using DoaFacil.Backend.Domain.Entities.CidadeEntity;
+using DoaFacil.Backend.Domain.Entities.DoacaoEntity;
 using DoaFacil.Backend.Domain.Entities.EnderecoUsuarioEntity;
 using DoaFacil.Backend.Domain.Entities.ImagemAnuncioEntity;
 using DoaFacil.Backend.Domain.Entities.UfEntity;
@@ -42,6 +45,7 @@ namespace DoaFacil.Backend.Application.Mapper
             MapAuth();
             MapAnuncio();
             MapImagemAnuncio();
+            MapDoacao();
         }
 
         private void MapCidade()
@@ -73,11 +77,16 @@ namespace DoaFacil.Backend.Application.Mapper
             CreateMap<AddAnuncioDto, AddAnuncioCommand>().ConvertUsing<AddAnuncioDtoToAddAnuncioCommandConverter>();
             CreateMap<AddAnuncioCommand, Anuncio>().ConvertUsing<AddAnuncioCommandToAnuncioConverter>();
         }
-
+        
         private void MapImagemAnuncio()
         {
             CreateMap<AddImagemAnuncioDto, AddImagemAnuncioCommand>().ConvertUsing<AddImagemAnuncioDtoToAddImagemAnuncioCommandConverter>();
             CreateMap<AddImagemAnuncioCommand, ImagemAnuncio>().ConvertUsing<AddImagemAnuncioCommandToImagemAnuncioConverter>();
+        }
+
+        private void MapDoacao()
+        {
+            CreateMap<AddDoacaoCommand, Doacao>().ConvertUsing<AddDoacaoCommandToDoacaoConverter>();
         }
     }
 }
